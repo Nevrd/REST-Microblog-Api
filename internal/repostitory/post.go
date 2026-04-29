@@ -1,6 +1,8 @@
 package repostitory
 
-import "time"
+import (
+	"time"
+)
 
 type Post struct {
 	title     string

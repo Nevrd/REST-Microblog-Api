@@ -35,5 +35,18 @@ func (h *HTTPHandlers) CreatePost(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(errors.ErrFromEncodeJson)
 		}
 	}
+	err = h.db.InsertPost(post)
+	if err != nil {
+		errModel := model.NewErrorModel(err)
+		w.WriteHeader(http.StatusBadRequest)
+		if err := json.NewEncoder(w).Encode(errModel); err != nil {
+			fmt.Println(errors.ErrFromEncodeJson)
+		}
+	}
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(model.ValidateEncodePostModel(post))
+}
+
+func (h *HTTPHandlers) GetPosts(w http.ResponseWriter, r *http.Request) {
 
 }
