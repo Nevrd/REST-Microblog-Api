@@ -4,7 +4,7 @@ import "API/internal/model"
 
 func (db *Database) InsertPost(post model.PostModel) error {
 	sqlQueru := `
-	INTSERT INTO tasks(title, text, tag, create_at) 
+	INSERT INTO posts(title, text, tag, create_at) 
 	VALUES($1, $2, $3, $4);
 	`
 	_, err := db.conn.Exec(db.ctx, sqlQueru, post.Title, post.Text, post.Tag, post.CreatedAt)
@@ -21,7 +21,7 @@ func (db *Database) GetAllPost() (allPost map[string]model.PostModel, err error)
 		return allPost, err
 	}
 	defer rows.Close()
-
+	allPost = make(map[string]model.PostModel)
 	for rows.Next() {
 		post := model.PostModel{}
 		if err = rows.Scan(post.Title, post.Text, post.Tag, post.CreatedAt); err != nil {
