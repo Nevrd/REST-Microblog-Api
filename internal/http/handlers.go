@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -17,7 +18,10 @@ type HTTPHandlers struct {
 }
 
 func NewHTTPHandlers(ctx context.Context) (*HTTPHandlers, error) {
-	path := "postgres://postgres:0404@172.25.96.1:5432/postgres"
+	path := os.Getenv("database_path")
+	if path == "" {
+		return &HTTPHandlers{}, errors.ErrEmptyConn
+	}
 	db, err := database.NewDataBase(ctx, path)
 
 	if err != nil {
