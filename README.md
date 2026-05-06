@@ -55,5 +55,5 @@
 
 ### 1. Клонируй репозиторий
 ```bash
-git clone https://github.com/Nevrd/REST-Microblog-Apis.git
-cd REST-Microblog-Apis
+git clone https://github.com/Nevrd/REST-Microblog-Api.git
+cd REST-Microblog-Api

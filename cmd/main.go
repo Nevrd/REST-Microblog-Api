@@ -8,6 +8,7 @@ import (
 func main() {
 	dataBaseContext, dataBaseContextCancel := context.WithCancel(context.Background())
 	defer dataBaseContextCancel()
+
 	server, err := http.NewServer(dataBaseContext)
 	if err != nil {
 		panic(err)
