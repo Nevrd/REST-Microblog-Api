@@ -8,4 +8,4 @@ migrate-up:
 	@migrate -path internal/database/migrate -database ${CONN_STRING} up
 
 migrate-down:
-	@migrate -path internal/database/migrate - database ${CONN_STRING} down
+	@migrate -path internal/database/migrate -database ${CONN_STRING} down
